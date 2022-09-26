@@ -36,8 +36,7 @@ export const Product = styled('a', {
     justifyContent: 'space-between',
 
     backgroundColor: 'rgba(0,0,0,0.6)',
-    color: '$white',
-
+    
     transform: 'translateY(110%)',
     opacity: 0,
     transition: 'all 0.2s ease-in-out',
@@ -45,6 +44,7 @@ export const Product = styled('a', {
 
     strong: {
       fontSize: '$lg',
+      color: '$gray100',
     },
 
     span: {
