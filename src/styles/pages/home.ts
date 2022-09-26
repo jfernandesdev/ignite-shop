@@ -5,7 +5,7 @@ export const HomeContainer = styled('main', {
   width: '100%',
   maxWidth: 'calc(100vw - ((100vw - 1180px) / 2))',
   marginLeft: 'auto',
-  minHeight: 600,
+  minHeight: 500,
 })
 
 export const Product = styled('a', {
@@ -55,7 +55,7 @@ export const Product = styled('a', {
     }
   },
 
-  '&:hover, &:active, &:focus': {
+  '&:hover': {
     footer: {
       transform: 'translateY(0%)',
       opacity: 1,
