@@ -28,7 +28,7 @@ export const Product = styled('a', {
     bottom: '0.25rem',
     left: '0.25rem',
     right: '0.25rem',
-    padding: '2rem',
+    padding: '1.25rem 1.5rem',
     borderRadius: 6,
 
     display: 'flex',
@@ -41,6 +41,10 @@ export const Product = styled('a', {
     opacity: 0,
     transition: 'all 0.2s ease-in-out',
 
+    '> div': {
+      display: 'flex',
+      flexDirection: 'column',
+    },
 
     strong: {
       fontSize: '$lg',
@@ -60,5 +64,24 @@ export const Product = styled('a', {
       transform: 'translateY(0%)',
       opacity: 1,
     }
+  }
+})
+
+export const AddToCartButton = styled('button', {
+  width: 56,
+  height: 56,
+  backgroundColor: '$green500',
+  color: '$white',
+
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  border: 0,
+  borderRadius: 6,
+  cursor: 'pointer',
+  transition: 'background 0.2s',
+
+  '&:hover': {
+    background: '$green300',
   }
 })

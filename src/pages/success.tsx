@@ -3,7 +3,11 @@ import Head from 'next/head'
 import Image from 'next/future/image'
 import Link from 'next/link'
 
-import { SuccessContainer, ImageContainer } from '../styles/pages/success'
+import { 
+  SuccessContainer, 
+  ContainerImages,
+  ImageItem 
+} from '../styles/pages/success'
 
 import { stripe } from '../lib/stripe'
 import Stripe from 'stripe'
@@ -27,12 +31,23 @@ export default function Success({ customerName, product }: SuccessProps) {
 
       <SuccessContainer>
         <h1>Compra efetuada!</h1>
-        <ImageContainer>
-          <Image src={product.imageUrl} alt={product.name} width={120} height={110} />
-        </ImageContainer>
+
+        <ContainerImages>
+          <ImageItem>
+            <Image src={product.imageUrl} alt={product.name} width={120} height={110} />
+          </ImageItem>
+
+          <ImageItem>
+            <Image src={product.imageUrl} alt={product.name} width={120} height={110} />
+          </ImageItem>
+
+          <ImageItem>
+            <Image src={product.imageUrl} alt={product.name} width={120} height={110} />
+          </ImageItem>
+        </ContainerImages>
 
         <p>
-          Uhuul <strong>{customerName}</strong>, sua <strong>{product.name}</strong> já está a caminho da sua casa.
+          Uhuul <strong>{customerName}</strong>, sua compra de 3 camisetas já está a caminho da sua casa.
         </p>
 
         <Link href="/">

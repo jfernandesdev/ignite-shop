@@ -11,26 +11,26 @@ export const globalStyles = globalCss({
     backgroundColor: '$gray900',
     color: '$gray100',
     '-webkit-font-smoothing': 'antialiased',
-
-    '&::-webkit-scrollbar': {
-      width: '12px',
-    },
-
-    '&::-webkit-scrollbar-track': {
-      background: 'transparent',
-    },
-
-    '&::-webkit-scrollbar-thumb': {
-      backgroundColor: '#a8a8a8',
-      borderRadius: '20px',
-      border: '3px solid $gray900',
-    }
+    overflowX: 'hidden',
   },
 
   'body, input, textarea, button': {
     fontFamily: 'Roboto',
     fontWeight: 400,
   },
+
+  '::-webkit-scrollbar': {
+    width: '3px',
+  },
+
+  '::-webkit-scrollbar-track': {
+    background: 'transparent',
+  },
+
+  '::-webkit-scrollbar-thumb': {
+    backgroundColor: '#a8a8a8',
+    borderRadius: '10px',
+  }
 
   // ':focus': {
   //   outline: 'none',

@@ -4,11 +4,17 @@ import Image from 'next/future/image'
 import Link from 'next/link'
 import Stripe from 'stripe'
 
+import { Handbag } from 'phosphor-react'
+
 import { stripe } from '../lib/stripe'
 
 import { useKeenSlider } from 'keen-slider/react'
 
-import { HomeContainer, Product } from '../styles/pages/home'
+import { 
+  HomeContainer, 
+  Product,
+  AddToCartButton
+} from '../styles/pages/home'
 
 import 'keen-slider/keen-slider.min.css'
 
@@ -47,8 +53,16 @@ export default function Home({ products }: HomeProps) {
             />
 
             <footer>
-              <strong>{product.name}</strong>
-              <span>{product.price}</span>
+              <div>
+                <strong>{product.name}</strong>
+                <span>{product.price}</span>
+              </div>
+
+              <AddToCartButton 
+                onClick={() => alert('Add card!')}
+              >
+                <Handbag size={32} weight="bold" />
+              </AddToCartButton>
             </footer>
           </Product>
        </Link>
