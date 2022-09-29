@@ -1,3 +1,5 @@
+import { useContext, useState } from 'react'
+import Link from 'next/link'
 import Image from 'next/future/image'
 import { 
   CartContainer,
@@ -8,7 +10,9 @@ import {
 
 import { X } from 'phosphor-react'
 
-import camiseta1 from '../../assets/shirts/1.png'
+import { CartContext } from '../../contexts/CartContext'
+import { formatPrice } from '../../utils/formatPrice'
+import axios from 'axios'
 
 interface ShoppingCartProps {
   cartIsOpen: boolean,
@@ -16,27 +20,70 @@ interface ShoppingCartProps {
 }
 
 export function ShoppingCart({ cartIsOpen, closeCart }: ShoppingCartProps ) {
+  const { cart, removeItemCart } = useContext(CartContext)
+  const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] =
+    useState(false)
+
+  const calculateTotalItems = cart.reduce((sumTotal, product) => {
+    return sumTotal + product.price * product.amount
+  }, 0)
+
+  const totalItemsFormatted = formatPrice(calculateTotalItems)
+
+  function handleRemoveProductCartById(productId: string) {
+    removeItemCart(productId)
+  }
+
+  async function handleBuyManyProducts() {
+    try {
+      setIsCreatingCheckoutSession(true);
+
+      const response = await axios.post('/api/checkout', {
+        line_items: cart.map((product) => {
+          return {
+            price: product.defaultPriceId,
+            quantity: product.amount,
+          }
+        }),
+      })
+
+      const { checkoutUrl } = response.data;
+      window.location.href = checkoutUrl
+    } catch (err) {
+      setIsCreatingCheckoutSession(false);
+      alert('Falha ao redirecionar ao checkout')
+    }
+  }
+
   return (
     <CartContainer open={cartIsOpen}>
       <header>
         <h2>Sacola de compras</h2>
-
         <button onClick={closeCart}>
           <X size={24} weight="bold"/>
         </button>
       </header>
 
       <ProductList>
-        {[1,2,3].map((index, item) => (
-          <CartItem key={index}>
+
+        {cart.map((product) => (
+          <CartItem key={product.id}>
             <ContainerImage>
-              <Image src={camiseta1} alt="" width={95} height={95} />
+              <Image src={product.imageUrl} alt="" width={95} height={95} />
             </ContainerImage>
 
             <div>
-              <span>Camiseta Beyond the Limits</span>
-              <strong>R$ 79,90</strong>
-              <a>Remover</a>
+              <Link href={`/product/${product.id}`}>
+                {product.name}
+              </Link>
+              <strong>{product.priceFormatted}</strong>
+
+              <button 
+                disabled={isCreatingCheckoutSession}
+                onClick={() => handleRemoveProductCartById(product.id)}
+              >
+                Remover
+              </button>
             </div>
           </CartItem>
         ))}
@@ -45,15 +92,22 @@ export function ShoppingCart({ cartIsOpen, closeCart }: ShoppingCartProps ) {
       <footer>
         <div>
           <span>Quantidade</span>
-          <span className="itemsAmount">3 itens</span>
+          <span className="itemsAmount">
+            {cart.length > 1 ? `${cart.length} itens` : `${cart.length} item`}
+          </span>
         </div>
 
         <div>
           <strong>Valor total</strong>
-          <strong className="price">R$ 270,00</strong>
+          <strong className="price">{totalItemsFormatted}</strong>
         </div>
 
-        <button>Finalizar compra</button>
+        <button 
+          disabled={(cart.length < 1) || isCreatingCheckoutSession}
+          onClick={handleBuyManyProducts}
+        >
+          Finalizar compra
+        </button>
       </footer>
     </CartContainer>
   )

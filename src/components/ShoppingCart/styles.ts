@@ -42,7 +42,12 @@ export const CartContainer = styled('div', {
       cursor: 'pointer',
       transition: 'background 0.2s',
 
-      '&:hover': {
+      '&:disabled': {
+        opacity: 0.6,
+        cursor: 'not-allowed',
+      },
+
+      '&:not(:disabled):hover': {
         background: '$gray800',
         color: '$white',
       }
@@ -89,8 +94,13 @@ export const CartContainer = styled('div', {
       transition: 'background 0.2s',
       marginTop: 30,
 
-      '&:hover': {
-        background: '$green300',
+      '&:disabled': {
+        opacity: 0.6,
+        cursor: 'not-allowed',
+      },
+
+      '&:not(:disabled):hover': {
+        backgroundColor: '$green300',
       }
     }
   },
@@ -125,23 +135,38 @@ export const CartItem = styled('div', {
     fontSize: '$md',
     lineHeight: 1.6,
 
-    span: {
+    a: {
       color: '$gray300',
+      cursor: 'pointer',
+      transition: 'all 0.2s',
+      textDecoration: 'none',
+
+      '&:hover': {
+        textDecoration: 'underline',
+        textUnderlinePosition: 'under'
+      }
     },
 
     strong: {
       color: '$gray100',
     },
 
-    a: {
+    button: {
+      background: 'transparent',
       color: '$green500',
+      border: 0,
       fontWeight: 700,
       cursor: 'pointer',
       transition: 'color 0.2s',
       fontSize: '1rem',
       marginTop: 'auto',
 
-      '&:hover': {
+      '&:disabled': {
+        opacity: 0.6,
+        cursor: 'not-allowed',
+      },
+
+      '&:not(:disabled):hover': {
         color: '$green300',
       }
     }

@@ -31,9 +31,4 @@ export const globalStyles = globalCss({
     backgroundColor: '#a8a8a8',
     borderRadius: '10px',
   }
-
-  // ':focus': {
-  //   outline: 'none',
-  //   boxShadow: 'inset 0 0 0 1.5px #E1E1E6',
-  // }
 })

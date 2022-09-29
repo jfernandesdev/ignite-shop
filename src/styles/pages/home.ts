@@ -3,9 +3,19 @@ import { styled } from "..";
 export const HomeContainer = styled('main', {
   display: 'flex',
   width: '100%',
-  maxWidth: 'calc(100vw - ((100vw - 1180px) / 2))',
   marginLeft: 'auto',
   minHeight: 500,
+
+  variants: {
+    maxWidth: {
+      'calc': {
+        maxWidth: 'calc(100vw - ((100vw - 1180px) / 2))',
+      },
+      'auto': {
+        maxWidth: 'auto',
+      }
+    }
+  }
 })
 
 export const Product = styled('a', {
