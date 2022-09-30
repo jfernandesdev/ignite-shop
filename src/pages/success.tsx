@@ -42,7 +42,7 @@ export default function Success({ customerName, products }: SuccessProps) {
 
         <h1>Compra efetuada!</h1>
         <p>
-          Uhuul <strong>{customerName}</strong>, sua compra de 
+          Uhuul <strong>{customerName}</strong>, sua compra de {' '}
           {(products.length > 1 ? 
             `${products.length} camisetas` : 
             `${products.length} camiseta`) 
