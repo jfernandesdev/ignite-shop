@@ -1,12 +1,12 @@
-# Ignite Shop <img src='https://github.com/jfernandesdev/ignite-shop/blob/773c33abe446e170dc17ab6d24c932ff0118b551/src/assets/logo-ignite-shop.svg' width='50px' />
+# Ignite Shop <img src='https://github.com/jfernandesdev/ignite-shop/blob/773c33abe446e170dc17ab6d24c932ff0118b551/src/assets/logo-ignite-shop.svg' width='90px' />
 
 Projeto Web desenvolvido dentro do Ignite by Rocketseat • Trilha ReactJS - TEMA: "Ignite Shop" 🛒
 
 ### Descrição:
 O projeto trata-se de uma loja online de camisetas com carrinho de compra
 
-- [x] Carrousel de produtos (camisetas);
-- [x] Página do produto com foto, título, preço e descrição;
+- [x] Slider de produtos (camisetas);
+- [x] Página dos produtos com foto, título, preço e descrição;
 - [x] Carrinho de compra com lista de produtos, opção remover e total calculado;
 - [x] Integração com checkout do Stripe;
 - [x] Responsividade desktop e mobile.
@@ -25,19 +25,19 @@ O projeto trata-se de uma loja online de camisetas com carrinho de compra
 
 ### Desktop (screenshot):
 
-| 1 | 2 |
+| Home | Produto |
 | --- | --- |
-| <img src="" /> | <img src="" /> | 
+| <img src="https://github.com/jfernandesdev/ignite-shop/blob/b2f9c8bfcf05a019e33694596af3e9170407b487/public/desktop-1.png" /> | <img src="https://github.com/jfernandesdev/ignite-shop/blob/b2f9c8bfcf05a019e33694596af3e9170407b487/public/desktop-2.png" /> | 
 
-| 3 | 4 |
-| --- | --- |
-| <img src="" /> | <img src="" /> |
+| Carrinho | Checkout | Sucesso |
+| --- | --- | --- |
+| <img src="https://github.com/jfernandesdev/ignite-shop/blob/b2f9c8bfcf05a019e33694596af3e9170407b487/public/desktop-3.png" /> | <img src="https://github.com/jfernandesdev/ignite-shop/blob/b2f9c8bfcf05a019e33694596af3e9170407b487/public/desktop-4.png" /> | <img src="https://github.com/jfernandesdev/ignite-shop/blob/b2f9c8bfcf05a019e33694596af3e9170407b487/public/desktop-5.png" />
 
 ### Mobile (screenshot):
 
-| 1 | 2 | 3 | 4 |  5 |
+| Home | Carrinho | Produto | Checkout |  Sucesso |
 | --- | --- | --- | --- | --- |
-| <img src="" width='275px' /> | <img src="" width='275px' /> | <img src="" width='275px' /> | <img src="" width='275px' /> | <img src="" width='275px' /> 
+| <img src="https://github.com/jfernandesdev/ignite-shop/blob/b2f9c8bfcf05a019e33694596af3e9170407b487/public/mobile-1.png" width='275px' /> | <img src="https://github.com/jfernandesdev/ignite-shop/blob/b2f9c8bfcf05a019e33694596af3e9170407b487/public/mobile-2.png" width='275px' /> | <img src="https://github.com/jfernandesdev/ignite-shop/blob/b2f9c8bfcf05a019e33694596af3e9170407b487/public/mobile-3.png" width='275px' /> | <img src="https://github.com/jfernandesdev/ignite-shop/blob/b2f9c8bfcf05a019e33694596af3e9170407b487/public/mobile-4.png" width='275px' /> | <img src="https://github.com/jfernandesdev/ignite-shop/blob/b2f9c8bfcf05a019e33694596af3e9170407b487/public/mobile-5.png" width='275px' /> 
 
 
 <br>
