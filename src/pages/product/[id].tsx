@@ -1,4 +1,3 @@
-import { useState, useContext } from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import Head from 'next/head'
 import Image from 'next/future/image'
@@ -7,14 +6,18 @@ import { useRouter } from 'next/router'
 import Stripe from 'stripe'
 import { stripe } from '../../lib/stripe'
 
-import axios from 'axios'
-import { CartContext } from '../../contexts/CartContext'
+import { useCart } from '../../hooks/useCart'
+
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 import {
   ProductContainer,
   ImageContainer,
-  ProductDetails
+  ProductDetails,
+  ProductDetailsLoading
 } from '../../styles/pages/product'
+import { formatPrice } from '../../utils/formatPrice'
 
 interface ProductProps {
   product: {
@@ -29,16 +32,30 @@ interface ProductProps {
 }
 
 export default function Product({ product }: ProductProps) {
-  const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] = useState(false)
-  const { addProductToCart } = useContext(CartContext)
-
+  const { addProductToCart } = useCart()
   const { isFallback } = useRouter()
 
-  if(isFallback) {
-    return <p>Loading...</p>
+  if(isFallback || !product) {
+    return (
+      <SkeletonTheme baseColor="#202024" highlightColor="#25252F">
+        <ProductContainer>
+          <Skeleton className="imageLoading"/>  
+          <ProductDetailsLoading>
+            <Skeleton className="titleLoading"/>
+            <Skeleton className="priceLoading" />
+            <div className="descriptionLoading">
+              <Skeleton count={5} />
+            </div>  
+            <div className="buttonLoading">
+              <Skeleton />
+            </div>
+          </ProductDetailsLoading>
+        </ProductContainer>
+      </SkeletonTheme>
+    )
   }
 
-  async function handleAddToCart(product) {
+  async function handleAddToCart(product : any) {
     const productToAdd = { ...product, amount: 1 }
     
     addProductToCart(productToAdd)
@@ -61,7 +78,6 @@ export default function Product({ product }: ProductProps) {
           <p>{product.description}</p>
 
           <button 
-            disabled={isCreatingCheckoutSession}
             onClick={() => handleAddToCart(product)}
           >
             Colocar na sacola
@@ -74,7 +90,7 @@ export default function Product({ product }: ProductProps) {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const { data } = await stripe.products.list({
-    limit: 3
+    limit: 4
   })
 
   const paths = data.map(product => ({
@@ -89,28 +105,31 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps<any, { id: string}> = async ({ params }) => {
   const productId = params.id;
+  
+  try {
+    const product = await stripe.products.retrieve(productId, {
+      expand: ['default_price'],
+    })
 
-  const product = await stripe.products.retrieve(productId, {
-    expand: ['default_price'],
-  })
+    const price = product.default_price as Stripe.Price
 
-  const price = product.default_price as Stripe.Price
-   
-  return {
-    props: {
-      product: {
-        id: product.id,
-        name: product.name,
-        imageUrl: product.images[0],
-        price: (price.unit_amount! / 100),
-        priceFormatted: new Intl.NumberFormat('pt-BR', {
-          style: 'currency',
-          currency: 'BRL',
-        }).format(price.unit_amount! / 100),
-        description: product.description,
-        defaultPriceId: price.id,
-      }
-    },
-    revalidate: 60 * 60 * 2 // 2 hours
+    return {
+      props: {
+        product: {
+          id: product.id,
+          name: product.name,
+          imageUrl: product.images[0],
+          price: (price.unit_amount! / 100),
+          priceFormatted: formatPrice(price.unit_amount! / 100),
+          description: product.description,
+          defaultPriceId: price.id,
+        }
+      },
+      revalidate: 60 * 60 * 8 // 8 hours
+    }
+  } catch (error) {
+    return {
+      notFound: true
+    }  
   }
 }

@@ -2,9 +2,14 @@ import { styled } from "..";
 
 export const HomeContainer = styled('main', {
   display: 'flex',
-  width: '100%',
+  maxWidth: '100%',
   marginLeft: 'auto',
   minHeight: 500,
+  
+  '@media(max-width: 769px)': {
+    paddingLeft: '1.5rem',
+    marginTop: '1rem',
+  },
 
   variants: {
     maxWidth: {
@@ -18,6 +23,25 @@ export const HomeContainer = styled('main', {
   }
 })
 
+export const AddToCartButton = styled('button', {
+  width: 56,
+  height: 56,
+  backgroundColor: '$green500',
+  color: '$white',
+
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  border: 0,
+  borderRadius: 6,
+  cursor: 'pointer',
+  transition: 'background 0.2s',
+
+  '&:hover': {
+    background: '$green300',
+  }
+})
+
 export const Product = styled('a', {
   background: 'linear-gradient(180deg, #1EA483 0%, #7465D4 100%)',
   borderRadius: 8,
@@ -28,6 +52,7 @@ export const Product = styled('a', {
   alignItems: 'center',
   justifyContent: 'center',
   overflow: 'hidden',
+
 
   img: {
     objectFit: 'cover',
@@ -74,24 +99,38 @@ export const Product = styled('a', {
       transform: 'translateY(0%)',
       opacity: 1,
     }
+  },
+
+  '@media(max-width: 769px)': {
+    footer: {
+      transform: 'translateY(0%)',
+      opacity: 1,
+
+      '> div': {
+        width: 'calc(100% - 65px)',
+      },
+
+      strong: {
+        fontSize: '1rem',
+        fontWeight: 'normal',
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+      },
+
+      span: {
+        fontSize: '$md',
+      }
+    }
   }
 })
 
-export const AddToCartButton = styled('button', {
-  width: 56,
-  height: 56,
-  backgroundColor: '$green500',
-  color: '$white',
-
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  border: 0,
-  borderRadius: 6,
-  cursor: 'pointer',
-  transition: 'background 0.2s',
-
-  '&:hover': {
-    background: '$green300',
+export const LoadingProduct = styled('div', {
+  '> div': {
+    width: '100%',
+    display: 'inline-flex',
+    marginTop: '10px',
+   justifyContent: 'space-between',
   }
 })
+

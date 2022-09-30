@@ -9,11 +9,12 @@ export const Arrow = styled('div', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  zIndex: '1',
 
   cursor: 'pointer',
   color: '$gray300',
   transition: 'all 0.3s',
-
+  
   '&:not(.disabled)': {
     background: 'linear-gradient(90deg, rgba(18, 18, 20, 0) 0%, rgba(18, 18, 20, 0.75) 100%)',
   },
@@ -24,6 +25,10 @@ export const Arrow = styled('div', {
 
   '.slick-disabled': {
     display: 'none'
+  },
+
+  '@media (max-width: 769px)': {
+    display: 'none',
   },
 
   variants: {

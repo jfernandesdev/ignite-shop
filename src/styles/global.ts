@@ -21,6 +21,7 @@ export const globalStyles = globalCss({
 
   '::-webkit-scrollbar': {
     width: '3px',
+    height: 0,
   },
 
   '::-webkit-scrollbar-track': {

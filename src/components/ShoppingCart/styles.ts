@@ -105,6 +105,12 @@ export const CartContainer = styled('div', {
     }
   },
 
+  '@media (max-width: 769px)': {
+    width: '100%',
+    padding: '1.5rem',
+    transform: 'translateX(-100%)',
+  },
+
   variants: {
     open: {
       true: {
@@ -112,7 +118,7 @@ export const CartContainer = styled('div', {
         opacity: 1,
       }
     }
-  }
+  },
 })
 
 export const ProductList = styled('div', {
@@ -169,7 +175,22 @@ export const CartItem = styled('div', {
       '&:not(:disabled):hover': {
         color: '$green300',
       }
-    }
+    },
+  },
+
+  '@media(max-width: 769px)': {
+    '> div + div': {
+      width: '100%',
+      overflow: 'hidden',
+
+      a: {
+        whiteSpace: 'nowrap',
+        width: '95%',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+      }
+    },
+
   }
 })
 
@@ -180,4 +201,14 @@ export const ContainerImage = styled('div', {
   img: {
     objectFit: 'cover',
   }
+})
+
+export const EmptyBag = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: '100%',
+  color: '$gray300',
+  gap: '0.5rem',
 })

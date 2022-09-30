@@ -13,6 +13,10 @@ export const HeaderContainer = styled('header', {
     cursor: 'pointer',
   },
 
+  '@media(max-width: 769px)': {
+    padding: '2rem 1.5rem',
+  },
+
   variants: {
     justify: {
       center: {

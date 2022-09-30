@@ -44,6 +44,15 @@ export const ContainerImages = styled('div', {
   '> div + div': {
     marginLeft: '-52px',
   },
+
+  '@media(max-width: 769px)': {
+    overflow: 'overflow',
+    maxWidth:  '100vw',
+
+    '> div + div': {
+      marginLeft: '-30px',
+    }
+  }
 })
 
 export const ImageItem = styled('div', {
@@ -63,5 +72,11 @@ export const ImageItem = styled('div', {
 
   img: {
     objectFit: 'cover',
+  },
+
+  '@media(max-width: 769px)': {
+    width: 100,
+    maxWidth: 100,
+    height: 100,
   }
 })

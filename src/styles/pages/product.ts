@@ -8,6 +8,21 @@ export const ProductContainer = styled('main', {
 
   maxWidth: 1180,
   margin: '0 auto',
+
+  '.imageLoading': {
+    minHeight: 567,
+    borderRadius: 8,
+  },
+
+  '@media(max-width: 769px)': {
+    display: 'block',
+    width: '100%',
+    padding: '0 1.5rem 1.5rem',
+
+    '.imageLoading': {
+      minHeight: 200,
+    }
+  }
 })
 
 export const ImageContainer = styled('div', {
@@ -24,6 +39,17 @@ export const ImageContainer = styled('div', {
 
   img: {
     objectFit: 'cover',
+  },
+
+  '@media(max-width: 769px)': {
+    maxWidth: '100vw',
+    height: 200,
+
+    img: {
+      objectFit: 'contain',
+      width: '100%',
+      height: '120%',
+    }
   }
 })
 
@@ -70,7 +96,95 @@ export const ProductDetails = styled('div', {
     '&:not(:disabled):hover': {
       backgroundColor: '$green300',
     }
+  },
+
+  '@media(max-width: 769px)': {
+    h1: {
+      fontSize: '$md',
+      marginTop: '1rem',
+    },
+
+    span: {
+      fontSize: '$md',
+      marginTop: '0.5rem',
+    },
+
+    p: {
+      margin: '1rem 0',
+      fontSize: '0.9rem',
+    },
+
+    button: {
+      padding: '1rem',
+      fontSize: '1rem',
+    }
   }
 })
 
+export const ProductDetailsLoading = styled('div', {
+  minWidth: '600px',
+  display: 'flex',
+  flexDirection: 'column',
+
+  '.titleLoading': {
+    height: '2rem',
+    width: '75%',
+    borderRadius: '0',
+  },
+
+  '.priceLoading': {
+    marginTop: '1rem',
+    width: '20%',
+    height: '2rem',
+    borderRadius: '0',
+  },
+
+  '.descriptionLoading': {
+    marginTop: '2.5rem',
+    lineHeight: 1.6,
+  
+    span: {
+      borderRadius: '0',
+    }
+  },
+
+  '.buttonLoading': {
+    marginTop: 'auto',
+
+    span: {
+      height: 69,
+      borderRadius: 8
+    }
+  },
+
+  '@media(max-width: 769px)': {
+    minWidth: '100%',
+    
+    '.titleLoading': {
+      marginTop: '0.5rem',
+    },
+
+    '.priceLoading': {
+      marginTop: '0.5rem',
+    },
+
+    '.descriptionLoading': {
+      margin: '1rem 0',
+      fontSize: '0.9rem',
+     
+      span: {
+        borderRadius: '0',
+      }
+    },
+
+    '.buttonLoading': {
+      marginTop: 'auto',
+
+      span: {
+        height: 52,
+        borderRadius: 8
+      }
+    },
+  }
+})
 

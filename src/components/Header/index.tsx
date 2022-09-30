@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Image from 'next/future/image'
@@ -8,21 +8,19 @@ import { ShoppingCart } from '../ShoppingCart'
 
 import { HeaderContainer, CartButton } from './styles'
 
-import { CartContext } from '../../contexts/CartContext'
+import { useCart } from '../../hooks/useCart'
 
 import logoImg from '../../assets/logo-ignite-shop.svg'
 
 export function Header() {
   const router = useRouter()
-  const { cart } = useContext(CartContext)
+  const { cart } = useCart()
 
   const [cartIsOpen, setCartIsOpen] = useState(false)
 
   function closeCart() {
     setCartIsOpen(false)
   }
-
-  console.log(cart);
 
   return (
     <>

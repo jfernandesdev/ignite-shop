@@ -5,10 +5,11 @@ import {
   CartContainer,
   ProductList,
   CartItem,
-  ContainerImage
+  ContainerImage,
+  EmptyBag
 } from './styles'
 
-import { X } from 'phosphor-react'
+import { X, ShoppingBag} from 'phosphor-react'
 
 import { CartContext } from '../../contexts/CartContext'
 import { formatPrice } from '../../utils/formatPrice'
@@ -64,51 +65,59 @@ export function ShoppingCart({ cartIsOpen, closeCart }: ShoppingCartProps ) {
         </button>
       </header>
 
-      <ProductList>
+      {(cart.length >= 1) ? (
+        <>
+          <ProductList>
+            {cart.map((product) => (
+              <CartItem key={product.id}>
+                <ContainerImage>
+                  <Image src={product.imageUrl} alt="" width={95} height={95} />
+                </ContainerImage>
 
-        {cart.map((product) => (
-          <CartItem key={product.id}>
-            <ContainerImage>
-              <Image src={product.imageUrl} alt="" width={95} height={95} />
-            </ContainerImage>
+                <div>
+                  <Link href={`/product/${product.id}`}>
+                    {product.name}
+                  </Link>
+                  <strong>{product.priceFormatted}</strong>
 
-            <div>
-              <Link href={`/product/${product.id}`}>
-                {product.name}
-              </Link>
-              <strong>{product.priceFormatted}</strong>
+                  <button
+                    disabled={isCreatingCheckoutSession}
+                    onClick={() => handleRemoveProductCartById(product.id)}
+                  >
+                    Remover
+                  </button>
+                </div>
+              </CartItem>
+            ))}
+          </ProductList>
 
-              <button 
-                disabled={isCreatingCheckoutSession}
-                onClick={() => handleRemoveProductCartById(product.id)}
-              >
-                Remover
-              </button>
-            </div>
-          </CartItem>
-        ))}
-      </ProductList>
+         <footer>
+          <div>
+            <span>Quantidade</span>
+            <span className="itemsAmount">
+              {cart.length > 1 ? `${cart.length} itens` : `${cart.length} item`}
+            </span>
+          </div>
 
-      <footer>
-        <div>
-          <span>Quantidade</span>
-          <span className="itemsAmount">
-            {cart.length > 1 ? `${cart.length} itens` : `${cart.length} item`}
-          </span>
-        </div>
+          <div>
+            <strong>Valor total</strong>
+            <strong className="price">{totalItemsFormatted}</strong>
+          </div>
 
-        <div>
-          <strong>Valor total</strong>
-          <strong className="price">{totalItemsFormatted}</strong>
-        </div>
-
-        <button 
-          disabled={(cart.length < 1) || isCreatingCheckoutSession}
-          onClick={handleBuyManyProducts}
-        >
-          Finalizar compra
-        </button>
-      </footer>
+          <button 
+            disabled={(cart.length < 1) || isCreatingCheckoutSession}
+            onClick={handleBuyManyProducts}
+          >
+            Finalizar compra
+          </button>
+        </footer>
+      </>
+      ) : (
+        <EmptyBag>
+          <ShoppingBag size={36} />
+          <span>Sua sacola está vazia!</span>
+        </EmptyBag>
+      )}  
     </CartContainer>
   )
 }
