@@ -7,9 +7,20 @@ O projeto trata-se de uma loja online de camisetas com carrinho de compra
 
 - [x] Slider de produtos (camisetas);
 - [x] Página dos produtos com foto, título, preço e descrição;
-- [x] Carrinho de compra com lista de produtos, opção remover e total calculado;
+- [x] Carrinho de compra com lista de produtos, opção de remover e total calculado;
 - [x] Integração com checkout do Stripe;
 - [x] Responsividade desktop e mobile.
+
+### Alguns cartões para simular pagamentos no checkout: 🧪
+
+| Marca | Número | CVC | Data | Opção |
+| --- | --- | --- | --- | --- |
+| Visa | `4242 4242 4242 4242` | Quaisquer 3 dígitos | Qualquer data futura | SUCESSO |
+| Martercard | `5555 5555 5555 4444` | Quaisquer 3 dígitos | Qualquer data futura | SUCESSO |
+| Visa | `4000 0000 0000 9995` | Quaisquer 3 dígitos | Qualquer data futura | CARTÃO RECUSADO POR FUNDOS INSUFICIENTES |
+| Visa | `4000 0000 0000 0127` | Quaisquer 3 dígitos | Qualquer data futura | CARTÃO RECUSADO POR CVC INCORRETO |
+
+> Para outros cenários de teste consulte a documentação do Stripe
 
 ## Tecnologias utilizadas: 🚀
 
@@ -20,6 +31,7 @@ O projeto trata-se de uma loja online de camisetas com carrinho de compra
 - Stitches | ^1.2.8
 - Keen Slider | ^6.8.2
 - Axios | ^0.27.2
+
 
 ## Layout (design by @millenakmartins) 🤩
 
@@ -39,6 +51,33 @@ O projeto trata-se de uma loja online de camisetas com carrinho de compra
 | --- | --- | --- | --- | --- |
 | <img src="https://github.com/jfernandesdev/ignite-shop/blob/b2f9c8bfcf05a019e33694596af3e9170407b487/public/mobile-1.png" width='275px' /> | <img src="https://github.com/jfernandesdev/ignite-shop/blob/b2f9c8bfcf05a019e33694596af3e9170407b487/public/mobile-2.png" width='275px' /> | <img src="https://github.com/jfernandesdev/ignite-shop/blob/b2f9c8bfcf05a019e33694596af3e9170407b487/public/mobile-3.png" width='275px' /> | <img src="https://github.com/jfernandesdev/ignite-shop/blob/b2f9c8bfcf05a019e33694596af3e9170407b487/public/mobile-4.png" width='275px' /> | <img src="https://github.com/jfernandesdev/ignite-shop/blob/b2f9c8bfcf05a019e33694596af3e9170407b487/public/mobile-5.png" width='275px' /> 
 
+
+##  Rodando o projeto localmente: ⚙
+
+Este projeto possui integração com o Stripe (listagem de produtos e checkout), então segue o passo a passo para configuração do Stripe:
+ - Logar em sua conta Stripe;
+ - Criar nova conta (`modo teste`) com o nome do projeto (canto superior esquerdo);
+ - Cadastre alguns produtos na aba `Produtos`
+   - Nome;
+   - Descrição;
+   - Foto;
+   - Preço (selecione `uma única vez`).
+ - Por fim, `Salvar e adicionar`
+ - Na aba de desenvolvedores > chaves da API. Copie a `chave publicável` e `chave secreta` e cole nas variáveis ambiente (alterar o arquivo .env.sample para `.env.local`) e preencher as variáveis `STRIPE_PUBLIC_KEY` e `STRIPE_SECRET_KEY`
+ 
+ 
+Depois, instale as depedências (com npm ou yarn)
+```sh
+$ yarn
+```
+
+Por fim, rode:
+```sh
+$ yarn dev
+```
+
+### Dê uma olhada como o projeto ficou! 👀
+https://shop-jfernandesdev.vercel.app/
 
 <br>
 
