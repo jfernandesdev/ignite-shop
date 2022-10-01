@@ -49,13 +49,13 @@ export default function Home({ products }: HomeProps) {
       setCurrentSlide(slider.track.details.rel)
     },
     slides: {
-      perView: 2.3,
+      perView: 3,
       spacing: 48,
     },
     breakpoints: {
       '(max-width: 769px)': {
         slides: {
-          perView: 1.2,
+          perView: 1.1,
           spacing: 16,
         }
       },
@@ -105,8 +105,8 @@ export default function Home({ products }: HomeProps) {
             <LoadingProduct key={index} className="keen-slider__slide">
               <Skeleton height="calc(100% - 56px)" borderRadius={8} />
               <div>
-                <Skeleton height={32} borderRadius={8} width={330}/>
-                <Skeleton height={32} borderRadius={8} width={100}/>
+                <Skeleton height={32} borderRadius={8} width={250}/>
+                <Skeleton height={32} borderRadius={8} width={50}/>
               </div>
             </LoadingProduct>
           ))
@@ -124,7 +124,7 @@ export default function Home({ products }: HomeProps) {
         onClick={(event: any) => event.stopPropagation() || instanceRef.current?.next()}
         disabled={
           currentSlide ===
-          instanceRef.current?.track.details.slides.length - 2
+          instanceRef.current?.track.details.slides.length - 3
         }
       />
     </HomeContainer>

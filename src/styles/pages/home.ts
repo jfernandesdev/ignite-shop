@@ -7,7 +7,7 @@ export const HomeContainer = styled('main', {
   minHeight: 500,
   
   '@media(max-width: 769px)': {
-    paddingLeft: '1.5rem',
+    paddingLeft: '1rem',
     marginTop: '1rem',
   },
 
@@ -79,11 +79,15 @@ export const Product = styled('a', {
     '> div': {
       display: 'flex',
       flexDirection: 'column',
+      width: 'calc(100% - 60px)',
     },
 
     strong: {
       fontSize: '$lg',
       color: '$gray100',
+      whiteSpace: 'nowrap',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
     },
 
     span: {

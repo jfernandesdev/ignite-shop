@@ -90,7 +90,7 @@ export default function Product({ product }: ProductProps) {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const { data } = await stripe.products.list({
-    limit: 4
+    limit: 5
   })
 
   const paths = data.map(product => ({
@@ -125,7 +125,7 @@ export const getStaticProps: GetStaticProps<any, { id: string}> = async ({ param
           defaultPriceId: price.id,
         }
       },
-      revalidate: 60 * 60 * 8 // 8 hours
+      revalidate: 60 * 60 * 2 // 2 hours
     }
   } catch (error) {
     return {

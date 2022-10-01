@@ -10,7 +10,7 @@ export const ProductContainer = styled('main', {
   margin: '0 auto',
 
   '.imageLoading': {
-    minHeight: 567,
+    minHeight: 500,
     borderRadius: 8,
   },
 
@@ -28,7 +28,7 @@ export const ProductContainer = styled('main', {
 export const ImageContainer = styled('div', {
   width: '100%',
   maxWidth: 576,
-  height: 576,
+  height: 500,
   background: 'linear-gradient(180deg, #1EA483 0%, #7465D4 100%)',
   borderRadius: 8,
   padding: '0.25rem',
